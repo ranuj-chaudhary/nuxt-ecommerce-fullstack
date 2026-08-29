@@ -1,0 +1,2 @@
+# nuxt-ecommerce-fullstack
+ecommerce
