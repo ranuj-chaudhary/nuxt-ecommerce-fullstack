@@ -1,3 +1,51 @@
+<script setup>
+import { reactive, ref } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
+import BaseInput from "~/components/BaseInput.vue";
+
+definePageMeta({
+  layout: "auth",
+});
+
+const form = reactive({
+  email: "",
+  password: "",
+  rememberMe: false,
+});
+
+const rules = {
+  email: { required, email }, // Matches state.email
+  password: { required }, // Matches state.password
+  rememberMe: { required },
+};
+
+const v$ = useVuelidate(rules, form);
+
+const showPassword = ref(false);
+const isLoading = ref(false);
+const errorMessage = ref("");
+
+const handleLogin = async () => {
+  const isValid = await v$.value.$validate();
+  if (!isValid) return;
+
+  //   try {
+  //     // Replace with your actual auth API call
+  //     console.log("Logging in with:", form);
+  //     await new Promise((resolve) => setTimeout(resolve, 1500));
+
+  //     alert('registration successfull')
+  //     // Example redirection / state update:
+  //     // router.push('/dashboard')
+  //   } catch (err) {
+  //     errorMessage.value = "Invalid email or password. Please try again.";
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+};
+</script>
+
 <template>
   <div
     class="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12 sm:px-6 lg:px-8"
@@ -31,32 +79,8 @@
         </p>
       </div>
 
-      <div
-        v-if="errorMessage"
-        class="p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg"
-      >
-        {{ errorMessage }}
-      </div>
-
       <form class="mt-8 space-y-5" @submit.prevent="handleLogin">
-        <div>
-          <label for="email" class="block text-sm font-medium text-slate-700"
-            >Email address</label
-          >
-        <div class="mt-1" :class="{ error: v$.firstName.$errors.length }">
-            <input
-              id="email"
-              v-model="form.email"
-              type="email"
-              autocomplete="email"
-              required
-              placeholder="you@example.com"
-              class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
-            />
-            
-          </div>
-        </div>
-
+        <BaseInput :errors="v$.email.$errors" v-model="form.email" label="Email address" type="email" required />
         <div>
           <div class="flex items-center justify-between">
             <label
@@ -67,18 +91,16 @@
             <a
               href="#"
               class="text-xs font-semibold text-indigo-600 hover:text-indigo-500"
-              >Forgot password?</a 
+              >Forgot password?</a
             >
           </div>
           <div class="mt-1 relative">
-            <input
-              id="password"
+            <BaseInput
+              :errors="v$.password.$errors"
               v-model="form.password"
-              :type="showPassword ? 'text' : 'password'"
-              autocomplete="current-password"
+              label="Password"
+              type="password"
               required
-              placeholder="••••••••"
-              class="w-full px-3 py-2.5 pr-10 border border-slate-300 rounded-lg text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
             />
             <button
               type="button"
@@ -141,6 +163,7 @@
         <button
           type="submit"
           :disabled="isLoading"
+          @submit.prevent="handleLogin"
           class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
         >
           <span v-if="isLoading" class="flex items-center gap-2">
@@ -183,50 +206,4 @@
   </div>
 </template>
 
-<script setup>
-import { reactive, ref } from "vue";
-import { useVuelidate } from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
 
-definePageMeta({
-  layout: "auth",
-});
-
-const form = reactive({
-  email: "",
-  password: "",
-  rememberMe: false,
-});
-
-const rules = {
-  email: { required, email }, // Matches state.firstName
-  password: { required }, // Matches state.lastName
-  rememberMe: { required },
-};
-
-const v$ = useVuelidate(rules, form);
-
-const showPassword = ref(false);
-const isLoading = ref(false);
-const errorMessage = ref("");
-
-const handleLogin = async () => {
-  const isValid = v$.value.validate()  
-  console.log("v$.value", v$.value)
-  if(!isValid) return
-
-//   try {
-//     // Replace with your actual auth API call
-//     console.log("Logging in with:", form);
-//     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-//     alert('registration successfull')
-//     // Example redirection / state update:
-//     // router.push('/dashboard')
-//   } catch (err) {
-//     errorMessage.value = "Invalid email or password. Please try again.";
-//   } finally {
-//     isLoading.value = false;
-//   }
-};
-</script>
