@@ -26,6 +26,10 @@ const showPassword = ref(false);
 const isLoading = ref(false);
 const errorMessage = ref("");
 
+function handleShowPassword() {
+  showPassword.value = !showPassword.value
+}
+
 const handleLogin = async () => {
   const isValid = await v$.value.$validate();
   if (!isValid) return;
@@ -80,31 +84,35 @@ const handleLogin = async () => {
       </div>
 
       <form class="mt-8 space-y-5" @submit.prevent="handleLogin">
-        <BaseInput :errors="v$.email.$errors" v-model="form.email" label="Email address" type="email" required />
+        <BaseInput
+          :errors="v$.email.$errors"
+          v-model="form.email"
+          label="Email address"
+          type="email"
+          required
+          id="email"
+          placeholder="Enter your email address"
+        />
         <div>
           <div class="flex items-center justify-between">
-            <label
-              for="password"
-              class="block text-sm font-medium text-slate-700"
-              >Password</label
-            >
-            <a
-              href="#"
-              class="text-xs font-semibold text-indigo-600 hover:text-indigo-500"
-              >Forgot password?</a
+           <Label for="password" labelClass="block text-sm font-medium text-slate-700" label="Password" />
+            <NuxtLink href="/auth/forgot-password" class="text-xs font-semibold text-indigo-600 hover:text-indigo-500"
+              >Forgot password?</NuxtLink
             >
           </div>
           <div class="mt-1 relative">
-            <BaseInput
+            <Input
               :errors="v$.password.$errors"
               v-model="form.password"
-              label="Password"
+              id="password"
+              name="password"
               type="password"
+              :type="showPassword ? 'text' : 'password'"
               required
-            />
+              placeholder="Enter your password" />
             <button
               type="button"
-              @click="showPassword = !showPassword"
+              @click="handleShowPassword"
               class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
             >
               <svg
@@ -145,19 +153,15 @@ const handleLogin = async () => {
           </div>
         </div>
 
-        <div class="flex items-center">
-          <input
-            id="remember-me"
+        <div class="flex items-center justify-start">
+           <Input
+            :errors="v$.rememberMe.$errors"
             v-model="form.rememberMe"
+            id="remember-me"
             type="checkbox"
-            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 rounded cursor-pointer"
+            inputClass="h-4 !w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 rounded cursor-pointer"
           />
-          <label
-            for="remember-me"
-            class="ml-2 block text-sm text-slate-600 cursor-pointer"
-          >
-            Remember me for 30 days
-          </label>
+          <Label for="remember-me" labelClass="ml-2 block text-sm text-slate-600 cursor-pointer" label="Remember me for 30 days" />
         </div>
 
         <button
