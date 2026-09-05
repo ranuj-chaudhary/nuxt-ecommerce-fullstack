@@ -4,10 +4,10 @@
       
       <form @submit.prevent="handleRegister" class="space-y-5 mb-4">
         <!-- Name Field -->
-        <BaseInput :errors="v$.name.$errors" v-model="form.name" label="Name" type="text" required />
-        <BaseInput :errors="v$.email.$errors" v-model="form.email" label="Email" type="email" required />
-        <BaseInput :errors="v$.password.$errors" v-model="form.password" label="Name" type="text" required />
-        <BaseInput :errors="v$.confirmPassword.$errors" v-model="form.confirmPassword" label="Confirm Password" type="text" required />
+        <BaseInput :errors="v$.name.$errors" v-model="form.name" label-class="capitalize" label="name" type="text" required />
+        <BaseInput :errors="v$.email.$errors" v-model="form.email" label-class="capitalize" label="email" type="email" required />
+        <BaseInput :errors="v$.password.$errors" v-model="form.password" label-class="capitalize" label="password" type="text" required />
+        <BaseInput :errors="v$.confirmPassword.$errors" v-model="form.confirmPassword" label-class="capitalize" label="confirm password" type="text" required />
   
         <!-- Submit Button -->
         <button 
