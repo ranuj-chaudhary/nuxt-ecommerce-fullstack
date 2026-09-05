@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 const layoutName = ref('Auth Layout')
-definePageMeta({
-    layout: 'auth'
-})
 </script>
 
 <template>
