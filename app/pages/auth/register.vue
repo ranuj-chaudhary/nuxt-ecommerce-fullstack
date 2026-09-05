@@ -6,7 +6,7 @@
         <!-- Name Field -->
         <BaseInput :errors="v$.name.$errors" v-model="form.name" label="Name" type="text" required />
         <BaseInput :errors="v$.email.$errors" v-model="form.email" label="Email" type="email" required />
-        <BaseInput :errors="v$.password.$errors" v-model="form.password" label="Name" type="text" required />
+        <BaseInput :errors="v$.password.$errors" v-model="form.password" label-class="capitalize" label="password" type="text" required />
         <BaseInput :errors="v$.confirmPassword.$errors" v-model="form.confirmPassword" label="Confirm Password" type="text" required />
   
         <!-- Submit Button -->
