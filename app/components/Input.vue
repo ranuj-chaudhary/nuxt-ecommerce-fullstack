@@ -12,11 +12,12 @@
 
 <script setup lang="ts">
 interface Props {
-  type?: "text" | "password" | "email" | "number" | "tel" | "url";
-  placeholder?: string;
-  inputClass?: string;
-  required?: boolean;
-  errors?: object;
+  type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url'
+  placeholder?: string
+  inputClass?: string
+  required?: boolean
+  errors?: object,
+  id?: string
 }
     
 const props = withDefaults(defineProps<Props>(), {
@@ -25,7 +26,8 @@ const props = withDefaults(defineProps<Props>(), {
   labelClass: '',
   inputClass: '',
   required: false,
-});
+  id: ''
+})
 
 const model = defineModel<string>();
 
