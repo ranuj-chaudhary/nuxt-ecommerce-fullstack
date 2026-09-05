@@ -24,7 +24,6 @@ const v$ = useVuelidate(rules, form);
 
 const showPassword = ref(false);
 const isLoading = ref(false);
-const errorMessage = ref("");
 
 function handleShowPassword() {
   showPassword.value = !showPassword.value
@@ -87,7 +86,8 @@ const handleLogin = async () => {
         <BaseInput
           :errors="v$.email.$errors"
           v-model="form.email"
-          label="Email address"
+          label="email address"
+          label-class="capitalize"
           type="email"
           required
           id="email"
