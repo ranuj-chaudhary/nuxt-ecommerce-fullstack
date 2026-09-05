@@ -10,5 +10,5 @@
 </template>
 
 <script lang="ts" setup>
-defineProps(["errors"]);
+defineProps(['errors'])
 </script>

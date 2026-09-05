@@ -1,16 +1,20 @@
 # Form Validation with Vuelidate (Composition API)
 
 ## 1. Overview
+
 We handle client-side form validation using `@vuelidate/core` and `@vuelidate/validators`. We adhere to the **Alternative Composition API syntax**, passing reactive state and computed validation rules directly into `useVuelidate()`.
 
 ## 2. Dependencies
+
 Defined in `package.json`:
-* `@vuelidate/core: ^2.0.3`
-* `@vuelidate/validators: ^2.0.4`
+
+- `@vuelidate/core: ^2.0.3`
+- `@vuelidate/validators: ^2.0.4`
 
 [Vuelidate Composition API Examples](https://vuelidate-next.netlify.app/examples.html#composition-api)
 
 ## 3. Standard Implementation Pattern
+
 ```vue
 <!-- app/components/auth/LoginForm.vue -->
 <script setup lang="ts">
@@ -75,7 +79,10 @@ const onSubmit = async () => {
       </p>
     </div>
 
-    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-700">
+    <button
+      type="submit"
+      class="bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-700"
+    >
       Sign In
     </button>
   </form>

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 definePageMeta({
-    layout: 'default'
+  layout: 'default'
 })
 </script>
 
 <template>
-    <div>Home Page</div>
+  <div>Home Page</div>
 </template>
