@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import FormErrors from './FormErrors.vue';
-import Label from './Label.vue';
+import FormErrors from './FormErrors.vue'
+import Label from './Label.vue'
 
 interface Props {
   password?: string
@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
   id: ''
 })
 
-const model = defineModel<string>();
+const model = defineModel<string>()
 </script>
 
 <style></style>

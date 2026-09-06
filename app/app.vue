@@ -1,5 +1,12 @@
-  <template>
+<template>
+  <div>
     <NuxtLayout>
       <NuxtPage />
-  </NuxtLayout>
-  </template>
+    </NuxtLayout>
+  </div>
+</template>
+<script lang="ts">
+definePageMeta({
+  layout: 'default' // loads layouts/default.vue
+})
+</script>

@@ -1,26 +1,26 @@
 <script setup>
-import { reactive, ref } from "vue";
-import { useVuelidate } from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
-import BaseInput from "~/components/BaseInput.vue";
+import { reactive, ref } from 'vue'
+import { useVuelidate } from '@vuelidate/core'
+import { required, email } from '@vuelidate/validators'
+import BaseInput from '~/components/BaseInput.vue'
 
 definePageMeta({
-  layout: "auth",
-});
+  layout: 'auth'
+})
 
 const form = reactive({
-  email: "",
-  password: "",
-  rememberMe: false,
-});
+  email: '',
+  password: '',
+  rememberMe: false
+})
 
 const rules = {
   email: { required, email }, // Matches state.email
   password: { required }, // Matches state.password
-  rememberMe: { required },
-};
+  rememberMe: { required }
+}
 
-const v$ = useVuelidate(rules, form);
+const v$ = useVuelidate(rules, form)
 
 const showPassword = ref(false);
 const isLoading = ref(false);
@@ -30,8 +30,8 @@ function handleShowPassword() {
 }
 
 const handleLogin = async () => {
-  const isValid = await v$.value.$validate();
-  if (!isValid) return;
+  const isValid = await v$.value.$validate()
+  if (!isValid) return
 
   //   try {
   //     // Replace with your actual auth API call
@@ -46,13 +46,11 @@ const handleLogin = async () => {
   //   } finally {
   //     isLoading.value = false;
   //   }
-};
+}
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12 sm:px-6 lg:px-8"
-  >
+  <div class="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12 sm:px-6 lg:px-8">
     <div
       class="w-full max-w-md space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-slate-100"
     >
@@ -60,12 +58,7 @@ const handleLogin = async () => {
         <div
           class="mx-auto h-12 w-12 rounded-xl bg-indigo-600 flex items-center justify-center shadow-md"
         >
-          <svg
-            class="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
+          <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -74,12 +67,8 @@ const handleLogin = async () => {
             />
           </svg>
         </div>
-        <h2 class="mt-4 text-2xl font-bold tracking-tight text-slate-900">
-          Welcome back
-        </h2>
-        <p class="mt-1 text-sm text-slate-500">
-          Please enter your credentials to sign in.
-        </p>
+        <h2 class="mt-4 text-2xl font-bold tracking-tight text-slate-900">Welcome back</h2>
+        <p class="mt-1 text-sm text-slate-500">Please enter your credentials to sign in.</p>
       </div>
 
       <form class="mt-8 space-y-5" @submit.prevent="handleLogin">
@@ -135,13 +124,7 @@ const handleLogin = async () => {
                   d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                 />
               </svg>
-              <svg
-                v-else
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -171,11 +154,7 @@ const handleLogin = async () => {
           class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
         >
           <span v-if="isLoading" class="flex items-center gap-2">
-            <svg
-              class="animate-spin h-4 w-4 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
+            <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
               <circle
                 class="opacity-25"
                 cx="12"
@@ -184,11 +163,7 @@ const handleLogin = async () => {
                 stroke="currentColor"
                 stroke-width="4"
               ></circle>
-              <path
-                class="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8H4z"
-              ></path>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
             </svg>
             Signing in...
           </span>
@@ -199,9 +174,7 @@ const handleLogin = async () => {
       <div class="text-center">
         <p class="text-sm text-slate-500">
           Don't have an account?
-          <NuxtLink
-            to="/auth/register"
-            class="font-semibold text-indigo-600 hover:text-indigo-500"
+          <NuxtLink to="/auth/register" class="font-semibold text-indigo-600 hover:text-indigo-500"
             >Sign up</NuxtLink
           >
         </p>
@@ -209,5 +182,3 @@ const handleLogin = async () => {
     </div>
   </div>
 </template>
-
-

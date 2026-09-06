@@ -1,6 +1,7 @@
 # Nuxt 4 Architecture & Design System
 
 ## 1. Project Directory Anatomy
+
 This application utilizes Nuxt 4's nested `app/` folder convention to segregate application runtime code from project configuration:
 
 ```text
@@ -17,3 +18,4 @@ my-nuxt4-app/
 ├── server/                     # Nitro server routes, middleware, and API endpoints
 ├── nuxt.config.ts              # Nuxt framework configuration
 └── package.json
+```

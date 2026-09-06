@@ -12,6 +12,7 @@ A structured reference implementation demonstrating how to build an App Shell in
 ## Demo & Previews
 
 <!-- Replace with an actual GIF/screenshot of your running app -->
+
 ![Application Preview](https://raw.githubusercontent.com/nuxt/brand-assets/main/playground/nuxt-dark.svg)
 
 ---
@@ -45,25 +46,26 @@ A structured reference implementation demonstrating how to build an App Shell in
 When building single-page applications or server-rendered web applications with complex interfaces (e.g., admin dashboards, portals, commerce storefronts), naive route setups re-render full-page wrappers on every route switch. This destroys scroll position, audio/video playback, and local UI state.
 
 This project demonstrates the **App Shell Pattern** in Nuxt 4:
-* It decouples layout chrome (navbars, sidebars, footers) from transient view content.
-* It leverages Nuxt 4's default `app/` directory convention for clean modularity.
-* It provides isolated, production-ready layouts for authenticated, default, and fullscreen views.
+
+- It decouples layout chrome (navbars, sidebars, footers) from transient view content.
+- It leverages Nuxt 4's default `app/` directory convention for clean modularity.
+- It provides isolated, production-ready layouts for authenticated, default, and fullscreen views.
 
 ### Key Features
 
-* **State Preservation:** Keeps persistent UI state across route changes without extra state-management overhead.
-* **Declarative Metadata:** Assigns layouts per-page via `definePageMeta({ layout: '...' })`.
-* **Zero Boilerplate:** No manual imports of headers or sidebars inside view components.
-* **Layout-Free Viewports:** Native support for fullscreen routes via `layout: false`.
-* **TypeScript Support:** End-to-end typed route metadata and component definitions.
+- **State Preservation:** Keeps persistent UI state across route changes without extra state-management overhead.
+- **Declarative Metadata:** Assigns layouts per-page via `definePageMeta({ layout: '...' })`.
+- **Zero Boilerplate:** No manual imports of headers or sidebars inside view components.
+- **Layout-Free Viewports:** Native support for fullscreen routes via `layout: false`.
+- **TypeScript Support:** End-to-end typed route metadata and component definitions.
 
 ### Tech Stack
 
-* **Framework:** [Nuxt 4](https://nuxt.com/)
-* **Core Engine:** [Vue 3 (Composition API & `<script setup>`)](https://vuejs.org/)
-* **Runtime / Server:** [Nitro](https://nitro.unjs.io/)
-* **Language:** [TypeScript](https://www.typescriptlang.org/)
-* **Package Manager:** [pnpm](https://pnpm.io/)
+- **Framework:** [Nuxt 4](https://nuxt.com/)
+- **Core Engine:** [Vue 3 (Composition API & `<script setup>`)](https://vuejs.org/)
+- **Runtime / Server:** [Nitro](https://nitro.unjs.io/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Package Manager:** [pnpm](https://pnpm.io/)
 
 ---
 
@@ -87,3 +89,4 @@ Nuxt 4 houses all frontend presentation code inside the `app/` folder by default
 ├── nuxt.config.ts                # Application configuration
 ├── package.json
 └── tsconfig.json
+```

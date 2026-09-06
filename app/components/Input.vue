@@ -1,13 +1,16 @@
 <template>
-    <input
-      id="email"
-      v-model="model"
-      required
-      :type="type"
-      autocomplete="email"
-      :placeholder="placeholder"
-      :class="['w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition', inputClass]"
-    /> 
+  <input
+    id="email"
+    v-model="model"
+    required
+    :type="type"
+    autocomplete="email"
+    :placeholder="placeholder"
+    :class="[
+      'w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition',
+      inputClass
+    ]"
+  />
 </template>
 
 <script setup lang="ts">
@@ -19,7 +22,7 @@ interface Props {
   errors?: object,
   id?: string
 }
-    
+
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
   placeholder: '',
@@ -29,10 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
   id: ''
 })
 
-const model = defineModel<string>();
-
+const model = defineModel<string>()
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
