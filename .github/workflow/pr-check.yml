@@ -1,0 +1,41 @@
+name: Pull Request Quality & Build Check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+      - develop
+
+# Cancel in-progress runs if new commits are pushed to the PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate Dependencies & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Use your team's standard Node version (or read from .nvmrc)
+          node-version: 22
+          # Caching ~/.npm speeds up npm ci significantly across PRs
+          cache: 'npm'
+
+      - name: Install dependencies strictly with npm ci
+        run: npm ci
+
+      - name: Check code formatting & linting (Optional)
+        # Only runs if 'lint' script exists in your package.json
+        run: npm run lint --if-present
+
+      - name: Run Nuxt / Project Build
+        # Ensures that templates, imports, and types compile cleanly
+        run: npm run build
