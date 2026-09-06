@@ -19,7 +19,8 @@ interface Props {
   placeholder?: string
   inputClass?: string
   required?: boolean
-  errors?: object
+  errors?: object,
+  id?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -27,7 +28,8 @@ const props = withDefaults(defineProps<Props>(), {
   placeholder: '',
   labelClass: '',
   inputClass: '',
-  required: false
+  required: false,
+  id: ''
 })
 
 const model = defineModel<string>()
